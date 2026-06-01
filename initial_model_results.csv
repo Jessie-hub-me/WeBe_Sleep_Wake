@@ -1,0 +1,4 @@
+Person,Threshold(60th pct),Accuracy,Sleep Sensitivity,Wake Specificity,Cohen kappa
+Jiaqi,10057.58,77.6%,76.8%,79.5%,0.51
+Shifan,2.96,81.5%,81.6%,81.4%,0.61
+Tina,166.85,76.4%,83.9%,67.6%,0.52
