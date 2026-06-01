@@ -9,9 +9,7 @@ comparison，以及它们暴露的数据质量问题（单位不一致、raw 时
 - Shifan — 2026/5/16 那晚，WeBe Regular 25Hz offline
 - Tina (Tiannan Zhang) — 2026/5/19 那晚，WeBe 100Hz online → 已降采样到 25Hz
 
----
-
-## 一、运行顺序（重要）
+# 一、运行顺序（重要）
 
 脚本之间有依赖，必须按此顺序跑：
 
@@ -22,9 +20,7 @@ comparison，以及它们暴露的数据质量问题（单位不一致、raw 时
 
 所有文件都在同一文件夹内，代码里只写文件名、无路径前缀，直接运行即可。
 
----
-
-## 二、Python 脚本（.py）
+# 二、Python 脚本（.py）
 
 ### build_tables.py — 数据对齐（地基）
 把每个人的 WeBe 原始加速度，和对应的 ActiGraph 逐分钟睡眠标签（ground
@@ -73,9 +69,7 @@ truth），对齐成一张「每分钟一行」的建模表。
 未达高相关的原因：佩戴位置不同、ActiGraph 专有 counts 算法、单位标定差异、
 分钟级近似对齐。
 
----
-
-## 三、输入数据文件
+# 三、输入数据文件
 
 WeBe 原始数据（每人 overnight）：
 - `jessie2_debug_log2csv.csv` — Jessie 的 WeBe（由开发同学导出）
@@ -92,9 +86,7 @@ ActiGraph 10 秒 epoch counts（时间戳正确，供加速度对比用）：
 - `Shifan_STM2E40243809_10sec.csv`
 - `Tina_STM2E40243809_10sec.csv`
 
----
-
-## 四、输出文件
+# 四、输出文件
 
 - `table_jiaqi.csv` / `table_shifan.csv` / `table_tina.csv`
   每分钟一行：minute（时间）、webe_count（WeBe 活动特征）、
@@ -105,9 +97,8 @@ ActiGraph 10 秒 epoch counts（时间戳正确，供加速度对比用）：
   initial 模型三人表现汇总（阈值、Accuracy、Sensitivity、Specificity、kappa），
   可直接放进报告 Results 表格。
 
----
 
-## 五、已知数据问题（建议写进报告 Discussion，作业第3点也要求分析）
+# 五、已知数据问题（建议写进报告 Discussion，作业第3点也要求分析）
 
 1. **WeBe 文件间单位不一致。** 三人 WeBe 加速度幅值量纲差几个数量级
    （Shifan ≈ 1g、Jessie 上万、Tina 居中），ActiGraph 又是另一套。
@@ -122,9 +113,7 @@ ActiGraph 10 秒 epoch counts（时间戳正确，供加速度对比用）：
 3. **匹配率不足 100%。** WeBe 数据存在少量缺失分钟（Tina 92%、Shifan 95%），
    分析时这些分钟按缺失处理、不参与对比。
 
----
-
-## 六、个体差异（Discussion 素材）
+# 六、个体差异（Discussion 素材）
 
 三人睡眠模式差异明显，正好测试模型鲁棒性：
 - Jessie：efficiency 87%，整段睡眠（22:51→7:49）。
