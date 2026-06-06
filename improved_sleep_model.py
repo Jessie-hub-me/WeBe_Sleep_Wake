@@ -1,8 +1,3 @@
-"""Improved WeBe sleep/wake model (assignment pt.5).
-Improvements over initial: (1) log1p + per-person z-score normalization
-(removes inter-device unit mismatch), (2) 5-min majority-vote smoothing,
-(3) 5-min minimum run length (removes single-minute flicker).
-Run build_tables.py first to get table_*.csv."""
 import pandas as pd, numpy as np
 
 TBL={"Jiaqi":"table_jiaqi.csv","Shifan":"table_shifan.csv","Tina":"table_tina.csv"}
