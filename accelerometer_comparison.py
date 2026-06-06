@@ -1,12 +1,4 @@
-"""Accelerometer comparison: WeBe vs ActiGraph (assignment pt.3), all 3 subjects.
 
-Method notes:
-  - WeBe accel units differ across files by orders of magnitude -> normalize
-    (log1p + z-score) before comparing.
-  - ActiGraph RAW (.agsd->csv) timestamps are corrupted -> use ActiGraph 10-sec
-    COUNTS (.agd->csv) instead, whose timestamps are correct.
-  - Compare per-minute activity, both aligned to the 22:00->10:00 window.
-"""
 import pandas as pd, numpy as np
 
 z = lambda x: (x - x.mean()) / x.std()
