@@ -1,14 +1,4 @@
-"""
-Align each person's WeBe overnight accelerometer data with the ActiGraph
-minute-level Sleep/Wake ground truth, producing one tidy modeling table
-per person: each row = one minute, with a WeBe-derived "activity count"
-feature and the ActiGraph S/W label.
 
-WeBe activity count (per minute):
-    1. magnitude m = sqrt(ax^2 + ay^2 + az^2) per 25 Hz sample
-    2. d = |m[t] - m[t-1]|  (sample-to-sample change)
-    3. count = sum(d) over the minute   -> analogous to ActiGraph activity counts
-"""
 import csv, datetime
 import numpy as np
 import pandas as pd
@@ -16,14 +6,12 @@ import pandas as pd
 PT_OFFSET = datetime.timedelta(hours=7)  # epoch is UTC; local PT = UTC-7 (May)
 
 def minute_key_from_epoch(ts):
-    """epoch seconds (UTC) -> local-PT minute string 'YYYY/M/D H:MM' matching GT."""
+    #epoch seconds (UTC) -> local-PT minute string 'YYYY/M/D H:MM' matching GT
     dt = datetime.datetime.fromtimestamp(ts) - PT_OFFSET
     dt = dt.replace(second=0, microsecond=0)
     return f"{dt.year}/{dt.month}/{dt.day} {dt.hour}:{dt.minute:02d}", dt
 
 def load_gt(path):
-    """Parse ActiGraph *_data.csv minute-level S/W. Returns dict minute->('S'/'W'),
-       plus list of (datetime, label) in order."""
     with open(path, encoding="utf-8", errors="replace") as fh:
         lines=[l.rstrip("\n") for l in fh]
     hi=[i for i,l in enumerate(lines) if l.startswith("Date,Time")][0]
@@ -44,8 +32,7 @@ def load_gt(path):
     return gt, order
 
 def stream_webe_counts(path, ts_idx, ax_idx, ay_idx, az_idx, skip):
-    """Stream WeBe csv, fill forward timestamps for blank rows (your file),
-       and accumulate per-minute activity counts. Returns dict minute_key->count."""
+    #Stream WeBe csv, fill forward timestamps for blank rows (your file), and accumulate per-minute activity counts. Returns dict minute_key->count
     counts={}
     prev_mag=None
     last_ts=None
