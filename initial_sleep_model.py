@@ -1,6 +1,3 @@
-"""Initial WeBe sleep/wake model.
-Step 1: build per-minute tables (run build_tables.py first -> table_*.csv)
-Step 2: per-person relative threshold (60th pct) -> S/W prediction -> metrics."""
 import pandas as pd, numpy as np
 
 TABLES = {"Jiaqi":"table_jiaqi.csv","Shifan":"table_shifan.csv","Tina":"table_tina.csv"}
